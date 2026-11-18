@@ -37,6 +37,24 @@ function saveReview(id, val, prev) {
   all[id] = r; store.set('zev.reviews', all);
 }
 
+/* ---------- like sprinkle: sparkles burst from the like button (dislike / neutral do nothing) ---------- */
+function sprinkle(btn) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const colors = ['#4cb34f', '#8be28f', '#ffd166', '#ffffff', '#7ff0e0'];
+  for (let i = 0; i < 16; i++) {
+    const d = document.createElement('i');
+    const size = 5 + Math.random() * 6, a = Math.random() * Math.PI * 2, r = 34 + Math.random() * 44;
+    d.className = 'spark';
+    d.style.cssText = `width:${size}px;height:${size}px;background:${colors[i % colors.length]};` + (i % 2 ? 'border-radius:50%' : 'transform:rotate(45deg)');
+    btn.appendChild(d);
+    const dx = Math.cos(a) * r, dy = Math.sin(a) * r - 12;
+    d.animate([
+      { transform: 'translate(-50%,-50%) scale(1)', opacity: 1 },
+      { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(.2)`, opacity: 0 },
+    ], { duration: 550 + Math.random() * 300, easing: 'cubic-bezier(.2,.7,.3,1)' }).onfinish = () => d.remove();
+  }
+}
+
 /* ---------- build slides ---------- */
 function buildGame(id, def) {
   const el = document.createElement('section');
@@ -72,6 +90,7 @@ function buildGame(id, def) {
     saveReview(id, nv || 'neutral', rec.saved);
     rec.saved = nv || 'neutral'; rec.vote = nv;
     likeB.classList.toggle('on', nv === 'like'); disB.classList.toggle('on', nv === 'dislike');
+    if (nv === 'like') sprinkle(likeB);   // only Like gets an effect
   };
   likeB.onclick = () => vote('like'); disB.onclick = () => vote('dislike');
   return rec;

@@ -23,6 +23,8 @@ button{font-family:inherit}
 .hw{position:relative}
 .slide:not([data-state="paused"]):not([data-state="ended"]) .pair{opacity:0;pointer-events:none}
 .rb{width:48px;height:48px;border-radius:50%;border:0;background:rgba(0,0,0,.42);color:#fff;display:grid;place-items:center;cursor:pointer;transition:transform .12s,background .15s}
+.rb{position:relative;overflow:visible}
+.spark{position:absolute;left:50%;top:50%;pointer-events:none;z-index:5}
 .rb:active{transform:scale(.9)}
 .rb svg{width:26px;height:26px}
 .rb svg.down{transform:rotate(180deg)}
