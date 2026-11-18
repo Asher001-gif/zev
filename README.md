@@ -35,3 +35,28 @@ Shuffle with no repeats, plus preloading of the next game.
 Game 1, built to be the lightest and fastest to load.
 Like and dislike logging, saved on the device at first.
 Games 2 to 6, using the same shared base.
+
+## Status (2026-11-18)
+
+Decision: the first games are **2D** with different perspectives (side-scroll, top-down), same flat low-poly look. 3D can come later.
+
+Built so far: feed shell (9:16 frame, swipe up / arrow key, lock while playing), game contract (`js/core.js` `makeGame`: start, pause, resume, win/lose, destroy), shuffle with no repeat and last-game memory, preload one ahead, like/dislike logging in `localStorage` (`zev.votes`), end screen with notify box (`zev.notify`, device only for now), and 6 games:
+
+| id | view | goal |
+|---|---|---|
+| hop | side-scroll | jump spikes 30s |
+| dodge | top-down | avoid shards 30s |
+| flap | side-scroll | fly through gaps 30s |
+| blaster | top-down | survive 35s, 3 lives |
+| catch | side view | 15 gems in 40s, dodge bombs |
+| orbs | top-down | 12 orbs in 35s, don't get caught |
+
+Controls everywhere: tap/Space = action, drag or WASD/arrows = move.
+
+## Run locally
+
+ES modules need a server: `python3 -m http.server 8000`, then open http://localhost:8000 (best in Chrome, or devtools mobile view).
+
+## Adding a game
+
+Create `js/games/<id>.js` with `export default makeGame({ id, name, caption, duration, init, update, draw })` and add one line to `js/games/index.js`.
