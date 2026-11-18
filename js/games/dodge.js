@@ -2,7 +2,7 @@
 import { makeGame, W, H, poly, polyField, makeBg, steer, rand, clamp } from '../core.js';
 
 export default makeGame({
-  id: 'dodge', name: 'Dodge', caption: 'Drag to move. Avoid the red shards for 30s.', duration: 30,
+  id: 'dodge', how: 'Drag your finger (or use WASD / arrow keys) to move. Don’t touch the red shards. Survive 30 seconds.', name: 'Dodge', caption: 'Drag to move. Avoid the red shards for 30s.', duration: 30,
   init() {
     return { p: { x: W / 2, y: H / 2 }, sh: [], next: 0.5, bg: makeBg(x => polyField(x, 0, 0, W, H, 40, 190, 35, 22, 8, 3)) };
   },

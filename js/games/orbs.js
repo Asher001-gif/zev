@@ -4,7 +4,7 @@ const TARGET = 12;
 const newOrb = (p) => { let x, y; do { x = rand(30, W - 30); y = rand(80, H - 30); } while (Math.hypot(x - p.x, y - p.y) < 130); return { x, y }; };
 
 export default makeGame({
-  id: 'orbs', name: 'Orbs', caption: 'Collect 12 orbs. Don’t get caught.', duration: 35,
+  id: 'orbs', how: 'Drag (or WASD / arrows) to move. Collect 12 orbs before time runs out. Don’t let the red chasers touch you.', name: 'Orbs', caption: 'Collect 12 orbs. Don’t get caught.', duration: 35,
   init() {
     const p = { x: W / 2, y: H / 2 + 80 };
     return { p, orb: newOrb(p), got: 0, ch: [{ x: 30, y: 90 }, { x: W - 30, y: 90 }], spawned: 0, bg: makeBg(x => polyField(x, 0, 0, W, H, 40, 140, 35, 24, 9, 11)) };

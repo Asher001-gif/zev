@@ -3,7 +3,7 @@ import { makeGame, W, H, poly, sky, makeHills, moveHills, drawHills, rand, clamp
 const GAP = 170, PW = 56, FLOOR = H - 60;
 
 export default makeGame({
-  id: 'flap', name: 'Flap', caption: 'Tap to flap through the gaps. Survive 30s.', duration: 30,
+  id: 'flap', how: 'Tap (or press Space) to flap and fly through the gaps. Don’t hit the pipes or the ground. Survive 30 seconds.', name: 'Flap', caption: 'Tap to flap through the gaps. Survive 30s.', duration: 30,
   init() { return { y: 300, vy: 0, pil: [], next: 0.6, gy: 320, hills: makeHills(7, 110, 130, 190, 80, 140) }; },
   update(g, s, dt) {
     moveHills(s.hills, 20 * dt);

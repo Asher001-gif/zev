@@ -2,7 +2,7 @@
 import { makeGame, W, H, poly, makeBg, polyField, steer, rand, clamp } from '../core.js';
 
 export default makeGame({
-  id: 'blaster', name: 'Blaster', caption: 'Drag to move, your ship fires itself. Survive 35s.', duration: 35,
+  id: 'blaster', how: 'Drag (or WASD / arrows) to move. Your ship fires by itself. You have 3 lives. Survive 35 seconds.', name: 'Blaster', caption: 'Drag to move, your ship fires itself. Survive 35s.', duration: 35,
   init() {
     return {
       p: { x: W / 2, y: 540 }, b: [], e: [], parts: [], fire: 0.2, next: 0.5, lives: 3, kills: 0, inv: 0, off: 0,

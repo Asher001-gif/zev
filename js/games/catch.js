@@ -3,7 +3,7 @@ import { makeGame, W, H, poly, sky, polyField, makeBg, makeHills, moveHills, dra
 const BY = 560, BW = 76, TARGET = 15;
 
 export default makeGame({
-  id: 'catch', name: 'Catch', caption: 'Slide the basket. Catch 15 gems, dodge bombs.', duration: 40,
+  id: 'catch', how: 'Drag (or A / D, arrows) to slide the basket. Catch 15 gems before time runs out. Don’t catch bombs!', name: 'Catch', caption: 'Slide the basket. Catch 15 gems, dodge bombs.', duration: 40,
   init() {
     return {
       bx: W / 2, items: [], next: 0.4, got: 0, hills: makeHills(7, 110, 130, 190, 90, 150),

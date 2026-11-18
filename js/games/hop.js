@@ -3,7 +3,7 @@ import { makeGame, W, H, poly, sky, polyField, makeBg, makeHills, moveHills, dra
 const GY = 520;
 
 export default makeGame({
-  id: 'hop', name: 'Hop', caption: 'Tap to jump over the spikes. Survive 30s.', duration: 30,
+  id: 'hop', how: 'Tap the screen (or press Space) to jump over spikes and blocks. Survive 30 seconds.', name: 'Hop', caption: 'Tap to jump over the spikes. Survive 30s.', duration: 30,
   init() {
     return {
       p: { x: 80, y: GY - 30, vy: 0, w: 28, h: 30 }, obs: [], next: 0.5, speed: 230, off: 0,

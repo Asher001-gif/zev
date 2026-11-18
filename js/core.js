@@ -94,7 +94,7 @@ export function drawHills(c, h, baseY, light, dark) {
    def.create({ canvas, input, onEnd }) -> { start, pause, resume, destroy }.
    Inside update: g.win() / g.lose() end the game. onEnd receives { outcome: 'win' | 'lose' }. */
 export function makeGame(spec) {
-  return { id: spec.id, name: spec.name, caption: spec.caption, create: ctx => new Runtime(spec, ctx) };
+  return { id: spec.id, name: spec.name, caption: spec.caption, how: spec.how || spec.caption, create: ctx => new Runtime(spec, ctx) };
 }
 
 class Runtime {

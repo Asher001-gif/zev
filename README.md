@@ -60,3 +60,7 @@ ES modules need a server: `python3 -m http.server 8000`, then open http://localh
 ## Adding a game
 
 Create `js/games/<id>.js` with `export default makeGame({ id, name, caption, duration, init, update, draw })` and add one line to `js/games/index.js`.
+
+## UI (2026-11-18)
+
+Short-video style: game name + short description bottom-left (always visible); right rail with 👍 / 👎 (only when paused or ended) and **?** (always; opens how-to-play and pauses). New players get a one-time fade-to-black tutorial pointing at the buttons (`zev.tutorial` in localStorage). Reviews are stored per game on the device in `zev.reviews` as like / neutral / dislike counts (moving on without voting = neutral) for picking games later.
