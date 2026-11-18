@@ -1,0 +1,30 @@
+name: Build Game for Itch
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # zev is plain HTML/CSS/JS (no npm, no Vite), so "build" = copy the game files.
+      # itch.io needs index.html at the root of the zip.
+      - name: Assemble dist
+        run: |
+          mkdir dist
+          cp index.html dist/
+          cp -r css js dist/
+          test -f dist/index.html
+
+      - name: Upload Zip for Itch.io
+        uses: actions/upload-artifact@v4
+        with:
+          name: itch-game-zip
+          path: dist/.
