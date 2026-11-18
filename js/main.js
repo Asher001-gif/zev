@@ -54,12 +54,7 @@ function buildEnd() {
   const el = document.createElement('section');
   el.className = 'slide'; el.style.transform = 'translateY(100%)';
   el.innerHTML = `<div class="end"><h2>You’ve played everything.</h2><p>New games coming soon.</p>
-    <form class="notify"><input type="email" placeholder="Email me when new games land" required aria-label="Email"><button>Notify me</button></form>
-    <p class="sub"></p></div>`;
-  const sub = el.querySelector('.sub'), input = el.querySelector('input');
-  const saved = store.get('zev.notify', null);
-  if (saved) sub.textContent = `We’ll let ${saved} know.`;
-  el.querySelector('form').onsubmit = e => { e.preventDefault(); store.set('zev.notify', input.value.trim()); sub.textContent = `Done. We’ll let ${input.value.trim()} know.`; };
+    <a class="follow" href="https://shadow-av.itch.io/" target="_blank" rel="noopener noreferrer">Follow on itch.io to get new games</a></div>`;
   feed.appendChild(el);
   return { type: 'end', el };
 }

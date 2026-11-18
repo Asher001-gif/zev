@@ -28,6 +28,4 @@ body{display:grid;place-items:center}
 .end{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:28px;text-align:center;background:linear-gradient(160deg,#1b1f3b,#3a2d5e 60%,#5b3a6b)}
 .end h2{font-size:28px;line-height:1.2}
 .end p{opacity:.85}
-.notify{display:flex;gap:8px;margin-top:10px;width:100%}
-.notify input{flex:1;min-width:0;padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.3);color:#fff;font-size:14px}
-.notify button{padding:11px 16px;border:0;border-radius:10px;background:var(--accent);font-weight:700;color:#1a1a1a;cursor:pointer}
+.follow{display:inline-block;margin-top:12px;padding:13px 22px;border-radius:99px;background:var(--accent);color:#1a1a1a;font-weight:700;font-size:15px;text-decoration:none}

@@ -40,7 +40,7 @@ Games 2 to 6, using the same shared base.
 
 Decision: the first games are **2D** with different perspectives (side-scroll, top-down), same flat low-poly look. 3D can come later.
 
-Built so far: feed shell (9:16 frame, swipe up / arrow key, lock while playing), game contract (`js/core.js` `makeGame`: start, pause, resume, win/lose, destroy), shuffle with no repeat and last-game memory, preload one ahead, like/dislike logging in `localStorage` (`zev.votes`), end screen with notify box (`zev.notify`, device only for now), and 6 games:
+Built so far: feed shell (9:16 frame, swipe up / arrow key, lock while playing), game contract (`js/core.js` `makeGame`: start, pause, resume, win/lose, destroy), shuffle with no repeat and last-game memory, preload one ahead, like/dislike logging in `localStorage` (`zev.votes`), end screen with a Follow-on-itch.io button, and 6 games:
 
 | id | view | goal |
 |---|---|---|
