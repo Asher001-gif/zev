@@ -13,4 +13,7 @@ export const REGISTRY = [
   { id: 'bounce',  load: () => import('./bounce.js') },   // top-down brick bouncer
   { id: 'slice',   load: () => import('./slice.js') },    // swipe to slice fruit
   { id: 'jet',     load: () => import('./jet.js') },      // hold-to-fly jetpack
+  { id: 'snake',   load: () => import('./snake.js') },    // top-down snake
+  { id: 'climb',   load: () => import('./climb.js') },    // vertical bouncer
+  { id: 'mole',    load: () => import('./mole.js') },     // whack-a-mole
 ];

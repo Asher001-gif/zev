@@ -57,6 +57,9 @@ Built so far: feed shell (9:16 frame, swipe up / arrow key, lock while playing),
 | bounce | top-down | keep the ball alive 30s (or clear bricks) |
 | slice | tap/drag | slice 15 fruits in 35s, bombs cost a life |
 | jet | side-scroll | hold to fly, collect 10 coins in 35s, dodge zappers |
+| snake | top-down | eat 12 apples in 40s, don't hit walls or yourself |
+| climb | side view | bounce up platforms to 300m in 40s |
+| mole | tap target | whack 15 moles in 35s, bombs cost a life |
 
 Controls everywhere: tap/Space = action, drag or WASD/arrows = move.
 
