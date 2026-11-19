@@ -16,4 +16,8 @@ export const REGISTRY = [
   { id: 'snake',   load: () => import('./snake.js') },    // top-down snake
   { id: 'climb',   load: () => import('./climb.js') },    // vertical bouncer
   { id: 'mole',    load: () => import('./mole.js') },     // whack-a-mole
+  { id: 'simon',   load: () => import('./simon.js') },    // memory pattern
+  { id: 'orbit',   load: () => import('./orbit.js') },    // reverse-direction orbiter
+  { id: 'archery', load: () => import('./archery.js') },  // timing archery
+  { id: 'bridge',  load: () => import('./bridge.js') },   // stick bridge
 ];

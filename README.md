@@ -60,6 +60,10 @@ Built so far: feed shell (9:16 frame, swipe up / arrow key, lock while playing),
 | snake | top-down | eat 12 apples in 40s, don't hit walls or yourself |
 | climb | side view | bounce up platforms to 300m in 40s |
 | mole | tap target | whack 15 moles in 35s, bombs cost a life |
+| simon | tap target | repeat the tile pattern, 5 rounds in 50s |
+| orbit | ring | tap to reverse, grab 10 stars, dodge blocks |
+| archery | side view | time 6 shots, score 40+ |
+| bridge | side view | hold to grow stick, cross 6 gaps in 45s |
 
 Controls everywhere: tap/Space = action, drag or WASD/arrows = move.
 
