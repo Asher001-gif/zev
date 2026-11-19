@@ -1,13 +1,17 @@
 // Feed shell: shuffle, preload-one-ahead, lock/unlock, swipe + arrow navigation, reviews, tutorial.
-import { Input } from './core.js';
+import { Input, keyName } from './core.js';
 import { REGISTRY } from './games/index.js';
 
 const $ = s => document.querySelector(s);
 const frame = $('#frame'), feed = $('#feed'), loadingEl = $('#loading'), hintEl = $('#hint');
 
+// Fit the 9:16 frame in JS (older TV/LG browsers lack aspect-ratio and min())
+function fit() { const w = window.innerWidth, h = window.innerHeight, fh = Math.min(h, w * 16 / 9); frame.style.height = fh + 'px'; frame.style.width = fh * 9 / 16 + 'px'; }
+fit(); window.addEventListener('resize', fit);
+
 const store = {
-  get(k, d) { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? d; } catch { return d; } },
-  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+  get(k, d) { try { const v = JSON.parse(localStorage.getItem(k)); return v === null || v === undefined ? d : v; } catch (err) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (err) {} },
 };
 
 const UP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>';
@@ -114,7 +118,7 @@ function prepare(i) {
   return prepared[i];
 }
 async function getReady(i) {
-  for (;;) { try { return await prepare(i); } catch { await new Promise(r => setTimeout(r, 1500)); } }
+  for (;;) { try { return await prepare(i); } catch (err) { await new Promise(r => setTimeout(r, 1500)); } }
 }
 
 /* ---------- state, lock, chrome ---------- */
@@ -199,7 +203,7 @@ frame.addEventListener('pointerup', e => { const dx = e.clientX - sx, dy = e.cli
 frame.addEventListener('wheel', e => { if (e.deltaY > 40) advance(); }, { passive: true });
 window.addEventListener('keydown', e => {
   if (e.target && e.target.tagName === 'INPUT') return;
-  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') advance();   // ignored while locked
+  const k = keyName(e); if (k === 'arrowdown' || k === 'arrowup') advance();   // ignored while locked
 });
 document.addEventListener('visibilitychange', () => { if (document.hidden && cur && cur.type === 'game') pauseRec(cur); });
 

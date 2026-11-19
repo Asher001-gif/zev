@@ -2,6 +2,10 @@
 export const W = 360, H = 640;
 export const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 export const rand = (a, b) => a + Math.random() * (b - a);
+export function keyName(e) {
+  if (e.key && e.key !== 'Unidentified') return String(e.key).toLowerCase();
+  return ({ 37: 'arrowleft', 38: 'arrowup', 39: 'arrowright', 40: 'arrowdown', 13: 'enter', 32: ' ', 87: 'w', 65: 'a', 83: 's', 68: 'd' })[e.keyCode] || '';
+}
 export const hash = (i, j, k = 0) => { const s = Math.sin(i * 127.1 + j * 311.7 + k * 74.7) * 43758.5453; return s - Math.floor(s); };
 
 /* ---------- input: one scheme for every game ----------
@@ -12,13 +16,13 @@ export class Input {
     this.ptr = { x: W / 2, y: H / 2, down: false };
     this._kd = e => {
       if (!this.on) return;
-      const k = e.key.toLowerCase();
+      const k = keyName(e); if (!k) return;
       if (k === ' ' || k.startsWith('arrow')) e.preventDefault();
-      if (!e.repeat && (k === ' ' || k === 'arrowup' || k === 'w')) this.taps++;
+      if (!e.repeat && (k === ' ' || k === 'arrowup' || k === 'w' || k === 'enter')) this.taps++;
       this.keys.add(k);
     };
-    this._ku = e => this.keys.delete(e.key.toLowerCase());
-    this._pd = e => { if (!this.on) return; this._pos(e); this.ptr.down = true; this.taps++; try { canvas.setPointerCapture(e.pointerId); } catch {} };
+    this._ku = e => this.keys.delete(keyName(e));
+    this._pd = e => { if (!this.on) return; this._pos(e); this.ptr.down = true; this.taps++; try { canvas.setPointerCapture(e.pointerId); } catch (err) {} };
     this._pm = e => { if (this.on) this._pos(e); };
     this._pu = () => { this.ptr.down = false; };
     window.addEventListener('keydown', this._kd);
@@ -104,7 +108,7 @@ class Runtime {
     this.canvas.width = W * dpr; this.canvas.height = H * dpr;
     this.c = this.canvas.getContext('2d'); this.c.setTransform(dpr, 0, 0, dpr, 0, 0);
     this.t = 0; this.dur = spec.duration; this.state = 'ready'; this.grace = 0.9; this.raf = 0; this.last = 0;
-    this.W = W; this.H = H;
+    this.W = W; this.H = H; this._tick = this._tick.bind(this);
     this.s = spec.init(this);
     this._render(false);
   }
@@ -119,7 +123,7 @@ class Runtime {
     if (this.canvas) { this.canvas.width = 0; this.canvas.height = 0; this.canvas = null; }
   }
   _go() { this.last = performance.now(); this.raf = requestAnimationFrame(this._tick); }
-  _tick = now => {
+  _tick(now) {
     if (this.state !== 'running') return;
     const dt = Math.max(0, Math.min((now - this.last) / 1000, 0.05)); this.last = now;
     if (this.grace > 0) { this.grace -= dt; this._render(true); this.raf = requestAnimationFrame(this._tick); return; }
@@ -127,7 +131,7 @@ class Runtime {
     this.spec.update(this, this.s, dt);
     if (this.state === 'running' && this.t >= this.dur) this._finish((this.spec.timeoutWin ? this.spec.timeoutWin(this.s) : true) ? 'win' : 'lose');
     if (this.state === 'running') { this._render(false); this.raf = requestAnimationFrame(this._tick); }
-  };
+  }
   _finish(outcome) {
     if (this.state !== 'running') return;
     this.state = 'ended'; this.input.setOn(false); cancelAnimationFrame(this.raf);

@@ -13,6 +13,9 @@
     <div id="loading" class="hidden"><div class="tri"></div><p>Next game loading…</p></div>
     <div id="hint" class="hidden"></div>
   </div>
+  <div id="err" style="display:none;position:fixed;left:0;right:0;top:0;z-index:99;padding:10px;background:#900;color:#fff;font:12px monospace;white-space:pre-wrap"></div>
+  <script>window.onerror=function(m,s,l){var e=document.getElementById('err');if(e){e.style.display='block';e.textContent+=m+' ('+String(s||'').split('/').pop()+':'+l+')\n';}};</script>
+  <script nomodule>var e=document.getElementById('err');e.style.display='block';e.textContent='This browser is too old for zev (no ES modules). Please update it.';</script>
   <script type="module" src="js/main.js"></script>
 </body>
 </html>

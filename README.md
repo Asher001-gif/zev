@@ -55,6 +55,8 @@ Built so far: feed shell (9:16 frame, swipe up / arrow key, lock while playing),
 | pop | tap target | pop 15 balloons in 30s, max 3 escape |
 | flip | side-scroll | tap flips gravity, dodge spikes 30s |
 | bounce | top-down | keep the ball alive 30s (or clear bricks) |
+| slice | tap/drag | slice 15 fruits in 35s, bombs cost a life |
+| jet | side-scroll | hold to fly, collect 10 coins in 35s, dodge zappers |
 
 Controls everywhere: tap/Space = action, drag or WASD/arrows = move.
 

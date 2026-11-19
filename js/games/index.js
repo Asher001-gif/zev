@@ -11,4 +11,6 @@ export const REGISTRY = [
   { id: 'pop',     load: () => import('./pop.js') },      // tap-to-pop balloons
   { id: 'flip',    load: () => import('./flip.js') },     // side-scroll gravity flipper
   { id: 'bounce',  load: () => import('./bounce.js') },   // top-down brick bouncer
+  { id: 'slice',   load: () => import('./slice.js') },    // swipe to slice fruit
+  { id: 'jet',     load: () => import('./jet.js') },      // hold-to-fly jetpack
 ];
