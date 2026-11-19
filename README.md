@@ -36,6 +36,10 @@ Game 1, built to be the lightest and fastest to load.
 Like and dislike logging, saved on the device at first.
 Games 2 to 6, using the same shared base.
 
+## Endless loop
+
+The end screen (with the Follow on itch.io button) is scrollable. Swipe up / press ↓ on it and a fresh shuffle starts, never opening with the game just played.
+
 ## Status (2026-11-18)
 
 Decision: the first games are **2D** with different perspectives (side-scroll, top-down), same flat low-poly look. 3D can come later.

@@ -24,7 +24,7 @@ function shuffle(ids, last) {
   return a;
 }
 
-const order = shuffle(REGISTRY.map(g => g.id), store.get('zev.last', null));
+let order = shuffle(REGISTRY.map(g => g.id), store.get('zev.last', null));
 const byId = Object.fromEntries(REGISTRY.map(g => [g.id, g]));
 const prepared = [], ready = [];
 let idx = 0, cur = null, busy = false;
@@ -126,8 +126,10 @@ const locked = () => !!cur && cur.type === 'game' && (cur.state === 'playing' ||
 function setState(rec, st) { rec.state = st; rec.el.dataset.state = st; if (rec === cur) refreshChrome(); }
 function refreshChrome() {
   const show = !busy && cur && cur.type === 'game' && !locked() && cur.el.dataset.help !== '1';
-  hintEl.classList.toggle('hidden', !show);
+  const showEnd = !busy && cur && cur.type === 'end';
+  hintEl.classList.toggle('hidden', !(show || showEnd));
   if (show) hintEl.textContent = coarse ? '▲ Swipe up' : '↓ Next game';
+  else if (showEnd) hintEl.textContent = coarse ? '▲ Swipe up to play again (new shuffle)' : '↓ Play again (new shuffle)';
 }
 function pauseRec(rec) {
   if (rec.state !== 'playing') return;
@@ -183,9 +185,13 @@ function transition(a, b) {
   });
 }
 async function advance() {
-  if (busy || !cur || cur.type === 'end' || locked() || cur.el.dataset.help === '1') return;
+  if (busy || !cur || locked() || cur.el.dataset.help === '1') return;
   busy = true; refreshChrome();
-  const next = idx + 1;
+  let next = idx + 1;
+  if (cur.type === 'end') {   // after the end screen: reshuffle and start a new round (never opens with the game just played)
+    order = shuffle(REGISTRY.map(g => g.id), store.get('zev.last', null));
+    prepared.length = 0; ready.length = 0; next = 0;
+  }
   if (!ready[next]) loadingEl.classList.remove('hidden');   // only if the next game isn't ready
   const nextRec = await getReady(next);
   loadingEl.classList.add('hidden');
