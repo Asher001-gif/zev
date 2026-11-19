@@ -20,4 +20,7 @@ export const REGISTRY = [
   { id: 'orbit',   load: () => import('./orbit.js') },    // reverse-direction orbiter
   { id: 'archery', load: () => import('./archery.js') },  // timing archery
   { id: 'bridge',  load: () => import('./bridge.js') },   // stick bridge
+  { id: 'rhythm',  load: () => import('./rhythm.js') },   // lane rhythm
+  { id: 'cannon',  load: () => import('./cannon.js') },   // aim and pop balloons
+  { id: 'fish',    load: () => import('./fish.js') },     // dive and catch fish
 ];

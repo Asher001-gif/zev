@@ -68,6 +68,9 @@ Built so far: feed shell (9:16 frame, swipe up / arrow key, lock while playing),
 | orbit | ring | tap to reverse, grab 10 stars, dodge blocks |
 | archery | side view | time 6 shots, score 40+ |
 | bridge | side view | hold to grow stick, cross 6 gaps in 45s |
+| rhythm | 3 lanes | tap gems on the line, hit 20 in 40s |
+| cannon | side view | drag to aim, pop 5 balloons with 6 shots |
+| fish | side view | hold to dive, catch 8 fish, dodge jellyfish |
 
 Controls everywhere: tap/Space = action, drag or WASD/arrows = move.
 
